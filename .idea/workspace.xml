@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8f44d4d-bada-451d-b5f1-ba7dd2b43c30" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kanban/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/kanban/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,5 +127,9 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="376" y="296" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1578362827567" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1578374094598">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1578374094598" />
   </component>
 </project>
