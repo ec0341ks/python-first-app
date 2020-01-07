@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e8f44d4d-bada-451d-b5f1-ba7dd2b43c30" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kanban/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/kanban/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kanban/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/kanban/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
