@@ -21,12 +21,21 @@
           <ul class="navbar-nav mr-auto">
           </ul>
           <ul class="navbar-nav">
+            {% if request.user.is_authenticated %}
+            <span class="navbar-text">
+              こんにちは {{ request.user.username }} さん
+            </span>
+            <li class="nav-item">
+             <a class="nav-link" href="#">ログアウト</a>
+            </li>
+            {% else %}
             <li class="nav-item">
               <a class="nav-link" href="#">ログイン</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">サインアップ</a>
             </li>
+            {% endif %}
           </ul>
         </div>
       </nav>
