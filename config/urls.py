@@ -13,11 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
+from django.urls import include, path
 from django.contrib import admin
-from django.urls import include, path # includeを追加
 
 urlpatterns = [
-    path("kanban/", include("kanban.urls")), # この行を追加
-    path('admin/', admin.site.urls),
+    path('kanban/', include("kanban.urls")), #urlが'kanban/'だった場合は、kanban/urls.pyを参照しなさい。
+    path('kanban/', include('django.contrib.auth.urls')),   # kanban/login/とkanban/logout/のルーティング設定
+    path('admin/', admin.site.urls), # URLが「admin/」の場合に、管理画面（admin.site.urls）を返す（ブラウザに表示する）ように設定.
 ]
