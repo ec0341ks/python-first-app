@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, resolve_url
 from django.views.generic import DetailView, UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 from .forms import UserForm
 from .mixin import OnlyYouMixin
 
@@ -18,6 +19,7 @@ class UserUpdateView(OnlyYouMixin, UpdateView):
     model = User
     template_name = 'kanban/users/update.html'
     form_class = UserForm
+    success_url = reverse_lazy("kanban:index")
 
     def get_succcess_url(self):
         return resolve_url('kanban:users_detail', pk=self.kwargs['pk'])
