@@ -1,18 +1,38 @@
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, resolve_url
+from django.views.generic import DetailView, UpdateView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from .forms import UserForm
+from .mixin import OnlyYouMixin
 
 
-# Create your views here.
-# from django.http import Htsponse
+class UserDetailView(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = "kanban/users/detail.html"
+
+
+class UserUpdateView(OnlyYouMixin, UpdateView):
+    model = User
+    template_name = 'kanban/users/update.html'
+    form_class = UserForm
+    success_url = reverse_lazy("kanban:index")
+
+    def get_succcess_url(self):
+        return resolve_url('kanban:users_detail', pk=self.kwargs['pk'])
+
 
 def index(request):
     return render(request, 'kanban/index.html')
 
+
 @login_required
 def home(request):
     return render(request, 'kanban/home.html')
+
 
 def signup(request):
     if request.method == 'POST':        # POSTする際の挙動書く
@@ -25,6 +45,6 @@ def signup(request):
     else:                               # GETする際の挙動書く
         form = UserCreationForm()
     context = {
-            "form": form
+        "form": form
     }
     return render(request, 'kanban/signup.html', context)
