@@ -4,11 +4,12 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, resolve_url
 from django.views.generic import DetailView, UpdateView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UserForm
 from .mixin import OnlyYouMixin
 
 
-class UserDetailView(DetailView):
+class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
     template_name = "kanban/users/detail.html"
 
