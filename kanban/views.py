@@ -6,9 +6,20 @@ from django.views.generic import DetailView, UpdateView, CreateView, ListView, U
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from .forms import UserForm, ListForm
+from .forms import UserForm, ListForm, CardForm
 from .mixin import OnlyYouMixin
-from .models import List
+from .models import List, Card
+
+
+class CardCreateView(LoginRequiredMixin, CreateView):
+    model = Card
+    template_name = "kanban/cards/create.html"
+    form_class = CardForm
+    succcess_url = reverse_lazy("kanban:home")
+
+    def form_valid(self, form):
+        form.instanse.user = self.request.user
+        return super().form_valid(form)
 
 
 class ListCreateView(LoginRequiredMixin, CreateView):
