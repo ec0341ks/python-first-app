@@ -15,11 +15,21 @@ class CardCreateView(LoginRequiredMixin, CreateView):
     model = Card
     template_name = "kanban/cards/create.html"
     form_class = CardForm
-    success_url = reverse_lazy("kanban:lists_list")
+    success_url = reverse_lazy("kanban:cards_list")
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+class CardListView(LoginRequiredMixin, ListView):
+    model = Card
+    template_name = "kanban/cards/list.html"
+
+
+class CardDetailView(LoginRequiredMixin, DetailView):
+    model = Card
+    template_name = "kanban/cards/detail.html"
 
 
 class ListCreateView(LoginRequiredMixin, CreateView):
