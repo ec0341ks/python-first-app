@@ -15,10 +15,10 @@ class CardCreateView(LoginRequiredMixin, CreateView):
     model = Card
     template_name = "kanban/cards/create.html"
     form_class = CardForm
-    succcess_url = reverse_lazy("kanban:home")
+    success_url = reverse_lazy("kanban:lists_list")
 
     def form_valid(self, form):
-        form.instanse.user = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 
