@@ -15,9 +15,9 @@ class ListCreateView(LoginRequiredMixin, CreateView):
     model = List
     template_name = "kanban/lists/create.html"
     form_class = ListForm
-    success_url = reverse_lazy("kanban:home")
+    success_url = reverse_lazy("kanban:index")
 
-    def from_valid(self, form):
+    def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
