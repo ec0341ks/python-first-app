@@ -16,8 +16,13 @@
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <!-- fixed-topを追加 -->
+      <!-- ここからif文で分岐 -->
+      {% if request.user.is_authenticated %}
+      <a class="navbar-brand" href="{% url 'kanban:home' %}">kanban</a>
+      {% else %}
       <a class="navbar-brand" href="{% url 'kanban:index' %}">kanban</a>
+      {% endif %}
+      <!-- ここまでif文で分岐 -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -33,6 +38,11 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'kanban:lists_list' %}">リスト一覧</a>
           </li>
+          <!-- ここから追記 -->
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'kanban:cards_list' %}">カード一覧</a>
+          </li>
+          <!-- ここまで追記 -->
           <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
           </li>

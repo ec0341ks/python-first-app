@@ -52,7 +52,7 @@ class CardUpdateView(LoginRequiredMixin, UpdateView):
     model = Card
     template_name = "kanban/cards/update.html"
     form_class = CardForm
-    success_url = reverse_lazy("kanban/cards_list")
+    success_url = reverse_lazy("kanban:home")
 
     def get_success_url(self):
         return resolve_url("kanban:cards_detail", pk=self.kwargs['pk'])
@@ -62,14 +62,14 @@ class CardDeleteView(LoginRequiredMixin, DeleteView):
     model = Card
     template_name = "kanban/cards/delete.html"
     form_class = CardForm
-    success_url = reverse_lazy("kanban:cards_list")
+    success_url = reverse_lazy("kanban:home")
 
 
 class ListCreateView(LoginRequiredMixin, CreateView):
     model = List
     template_name = "kanban/lists/create.html"
     form_class = ListForm
-    success_url = reverse_lazy("kanban:lists_list")
+    success_url = reverse_lazy("kanban:home")
 
     def form_valid(self, form):
         form.instance.user = self.request.user
