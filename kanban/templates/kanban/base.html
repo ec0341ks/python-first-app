@@ -9,13 +9,14 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   <title>kanban</title>
 </head>
 
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <!-- fixed-topを追加 -->
       <a class="navbar-brand" href="{% url 'kanban:index' %}">kanban</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +29,9 @@
           {% if request.user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'kanban:users_detail' request.user.pk %}">{{ request.user.username }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'kanban:lists_list' %}">リスト一覧</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
@@ -48,6 +52,7 @@
     {% block content %}
     {% endblock %}
   </main>
+
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
