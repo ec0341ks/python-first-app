@@ -1,16 +1,13 @@
 {% extends "kanban/base.html" %}
 
 {% block content %}
-<style>
-    body {
-        padding-top: 70px;
-    }
-</style>
 
-<div class="container-fluid" style="display: table-cell !important">
+<div class="container-fluid home">
+    <!-- homeを追加 -->
     <div class="row flex-nowrap">
         {% for list in list_list %}
-        <div class="bg-light m-3 p-2 " style="width: 240px; height: 100%">
+        <div class="bg-light m-3 p-2 list">
+            <!-- listを追加 -->
             <h4>{{ list.title }}
                 <a href="{% url 'kanban:lists_update' list.pk %}" class="text-dark"><i
                         class="far fa-edit fa-xs"></i></a>
@@ -28,11 +25,9 @@
                 </div>
             </a>
             {% endfor %}
-            <a href="{% url 'kanban:cards_create_from_home' list.pk %}" class="text-dark"><i
-                    class="far fa-plus-square"></i> さらにカードを追加</a> <!-- urlを編集 -->
+            <a href="{% url 'kanban:cards_create' %}" class="text-dark"><i class="far fa-plus-square"></i> さらにカードを追加</a>
         </div>
         {% endfor %}
     </div>
 </div>
-
 {% endblock %}
