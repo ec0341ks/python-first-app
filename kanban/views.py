@@ -6,9 +6,47 @@ from django.views.generic import DetailView, UpdateView, CreateView, ListView, U
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from .forms import UserForm, ListForm
+from .forms import UserForm, ListForm, CardForm
 from .mixin import OnlyYouMixin
-from .models import List
+from .models import List, Card
+
+
+class CardCreateView(LoginRequiredMixin, CreateView):
+    model = Card
+    template_name = "kanban/cards/create.html"
+    form_class = CardForm
+    success_url = reverse_lazy("kanban:cards_list")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class CardListView(LoginRequiredMixin, ListView):
+    model = Card
+    template_name = "kanban/cards/list.html"
+
+
+class CardDetailView(LoginRequiredMixin, DetailView):
+    model = Card
+    template_name = "kanban/cards/detail.html"
+
+
+class CardUpdateView(LoginRequiredMixin, UpdateView):
+    model = Card
+    template_name = "kanban/cards/update.html"
+    form_class = CardForm
+    success_url = reverse_lazy("kanban/cards_list")
+
+    def get_success_url(self):
+        return resolve_url("kanban:cards_detail", pk=self.kwargs['pk'])
+
+
+class CardDeleteView(LoginRequiredMixin, DeleteView):
+    model = Card
+    template_name = "kanban/cards/delete.html"
+    form_class = CardForm
+    success_url = reverse_lazy("kanban:cards_list")
 
 
 class ListCreateView(LoginRequiredMixin, CreateView):
@@ -59,8 +97,9 @@ class UserUpdateView(OnlyYouMixin, UpdateView):
     form_class = UserForm
     success_url = reverse_lazy("kanban:index")
 
-    def get_succcess_url(self):
-        return resolve_url('kanban:users_detail', pk=self.kwargs['pk'])
+    # 確認必要
+    # def get_succcess_url(self):
+    #     return resolve_url('kanban:users_detail', pk=self.kwargs['pk'])
 
 
 def index(request):
